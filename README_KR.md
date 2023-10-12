@@ -55,30 +55,6 @@ const result = await Arehs.create(dataArr)
 
 ```
 
-## ⚙️ Setting up your project
-
-1. 먼저 GitHub 토큰이 없는
-   경우 [토큰을 생성](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)
-   하세요.
-2. 리포지토리에서 패키지를 다운로드하여 설치하려면 개인 액세스 토큰(classic)
-   에 [read:packages](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries)
-   스코프를 가진 사용자의 읽기 권한이 있어야 합니다.
-
-**당신의 프로젝트에 `.npmrc`를 만들고, 아래와 같이 추가하세요.**
-
-```npm
-@asurion-private:registry=https://npm.pkg.github.com
-```
-
-**이 줄을 추가하고 당신의 깃허브 토큰을 위한 글로벌 설정하세요.**
-
-* MacOS Root Path: ~/.npmrc
-* Windows10 Root Path: %USERPROFILE%\.npmrc
-
-```npm
-//npm.pkg.github.com/:_authToken=${your_github_token}
-```
-
 ## ⚡️ Performance
 
 테스트 결과 `Arehs`는 `Promise.all`에 비해 약 30% 이상 향상될 수 있는 것으로 나타났습니다.

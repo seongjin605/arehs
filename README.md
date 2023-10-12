@@ -57,30 +57,6 @@ const result = await Arehs.create(dataArr)
   });
 ```
 
-## ⚙️ Setting up your project
-
-1. First, create
-   a [GitHub token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)
-   if you don't already have one.
-2. To download and install packages from a repository, your personal access token (classic) must have
-   the [read:packages](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries)
-   scope, and your user account must have read permission.
-
-**Create an `.npmrc` in your project, and add it like this:**
-
-```npm
-@asurion-private:registry=https://npm.pkg.github.com
-```
-
-**Add this line and set the GitHub token to global:**
-
-* MacOS Root Path: ~/.npmrc
-* Windows10 Root Path: %USERPROFILE%\.npmrc
-
-```npm
-//npm.pkg.github.com/:_authToken=${your_github_token}
-```
-
 ## ⚡️ Performance
 
 Our tests show that `Arehs` can improve by about 30% or more over `Promise.all`.
