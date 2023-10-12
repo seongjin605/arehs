@@ -14,9 +14,6 @@ export class Arehs<T, R> {
   private error: unknown;
 
   /**
-   * 클래스 인스턴스를 초기화하는 생성자입니다.
-   * 입력 데이터(data), 병렬 처리 제한(concurrency), 및 데이터 처리 함수(processor)를 및 타임아웃(timeout)을 받습니다.
-   *
    * Constructor that initializes an instance of the class.
    * Takes input data (data), a parallelism limit (concurrency), and a data processing function (processor),
    * and a timeout (timeout) in milliseconds.
@@ -40,8 +37,6 @@ export class Arehs<T, R> {
   }
 
   /**
-   * create 메서드의 목적은 특정한 데이터 배열로부터 Arehs 인스턴스를 생성하기 위함입니다.
-   *
    * The purpose of the create method is to create an Arehs instance from a specific array of data.
    *
    * @param data
@@ -51,8 +46,6 @@ export class Arehs<T, R> {
   }
 
   /**
-   * 병렬 처리 값을 설정하고 현재 인스턴스를 반환하는 메서드입니다.
-   *
    * Methods that set the value for parallelism and return the current instance.
    *
    * @param concurrency
@@ -63,9 +56,6 @@ export class Arehs<T, R> {
   }
 
   /**
-   * 타임아웃 시간을 지정합니다.
-   * Default 값은 0 입니다. (0보다 크면 옵션이 동작하며, 타임아웃 시간(ms)보다 작업시간이 길면 에러가 발생합니다.
-   *
    * Set the timeout time.
    * The default value is 0. If it's greater than 0, the option works, and an error is thrown if the operation takes longer than the timeout time(ms).
    *
@@ -80,10 +70,6 @@ export class Arehs<T, R> {
   }
 
   /**
-   * mapAsync 함수를 호출하면 입력 데이터를 비동기적으로 처리하고 결과를 반환하는 프로세스가 시작됩니다.
-   * 이때 각 작업은 동시에 여러 작업이 실행될 수 있지만, concurrency 설정에 따라 제한됩니다.
-   * 이것은 대규모 데이터 처리 작업을 효과적으로 관리하고 제어하기 위한 유용한 도구로 사용될 수 있습니다.
-   *
    * Calling the mapAsync function starts the process of asynchronously processing the input data and returning the results.
    * At this time, each task can have multiple tasks running at the same time, but this is limited by the concurrency setting.
    * This can be used as a useful tool for effectively managing and controlling large data processing jobs.
@@ -115,9 +101,6 @@ export class Arehs<T, R> {
   }
 
   /**
-   * 각 데이터 항목을 처리하는 비동기 작업을 실행하고 결과를 results 배열에 저장합니다.
-   * 작업이 완료되면 TASK_COMPLETED 이벤트를 발생시킵니다.
-   *
    * Runs an asynchronous task that processes each data item and stores the results in the results array.
    * When the task is complete, raise the TASK_COMPLETED event.
    *
@@ -157,9 +140,6 @@ export class Arehs<T, R> {
   }
 
   /**
-   * 비동기 작업을 실행하고 결과를 수집하는 메서드입니다. promiseExecution 이 이미 존재하면 해당 프로미스를 반환하고,
-   * 그렇지 않으면 새로운 프로미스를 생성하여 비동기 작업을 시작합니다.
-   *
    * A method that executes an asynchronous operation and collects the result.
    * If a promiseExecution already exists, it returns that promise
    * otherwise, it creates a new promise to start the asynchronous operation.
