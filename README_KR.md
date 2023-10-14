@@ -59,6 +59,37 @@ const result = await Arehs.create(dataArr)
 
 테스트 결과 `Arehs`는 `Promise.all`에 비해 약 30% 이상 향상될 수 있는 것으로 나타났습니다.
 
+```javascript
+import { Arehs } from "arehs";
+
+const delay = (i) => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(i);
+    }, 150 + Math.random() * 1000);
+  });
+};
+
+(async () => {
+  const tasks = Array.from({ length: 1000 }).map((d, i) => i);
+
+  const startArehs = performance.now();
+  await Arehs.create(tasks).withConcurrency(50).mapAsync(delay);
+  const endArehs = performance.now();
+
+  console.log(`Arehs: ${endArehs - startArehs}ms`);
+
+  const startPromiseAll = performance.now();
+  while (tasks.length > 0) {
+    const chunkedTasks = tasks.splice(0, 50);
+    await Promise.all(chunkedTasks.map(delay));
+  }
+  const endPromiseAll = performance.now();
+
+  console.log(`Promise.all: ${endPromiseAll - startPromiseAll}ms`);
+})();
+```
+
 ```bash
     promiseAllTime: 19.859867874979972(s)
     promisePoolTime: 13.55725229203701(s)
