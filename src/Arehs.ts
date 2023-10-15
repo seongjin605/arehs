@@ -82,9 +82,6 @@ export class Arehs<T, R> {
   }
 
   /**
-   * 현재 진행 중인 작업이 concurrency 제한을 초과하지 않도록 기다리는 메서드입니다.
-   * 작업이 완료되면 TASK_COMPLETED 이벤트를 발생시킵니다.
-   *
    * Method that waits for the currently in-progress task to not exceed the concurrency limit.
    * When the task is complete, raise the TASK_COMPLETED event.
    *
