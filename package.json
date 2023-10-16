@@ -1,7 +1,7 @@
 {
   "name": "arehs",
-  "version": "1.0.8",
-  "description": "This is an arehs project for promise pools.",
+  "version": "1.0.9",
+  "description": "The ares ensures the best possible large batch processing, which is oriented towards event-driven chunk processing.",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
   "types": "dist/mjs/index.d.ts",
@@ -54,9 +54,7 @@
     "lint-staged": "^14.0.1",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
-  },
-  "dependencies": {
+    "typescript": "^5.2.2",
     "eslint-plugin-jest": "^27.4.2",
     "lodash": "^4.17.21"
   }
