@@ -4,7 +4,8 @@
 
 # 🏛️ Arehs
 
-`Arehs`는 Promise 기반의 대규모 병렬 처리에 적합합니다. 당신의 어플리케이션 성능을 향상시키는 라이브러리입니다. 💪
+`아레스`는 이벤트 중심의 chunk processing을 지향하는 최상의 대규모 배치 처리를 보장합니다.  
+이는 첫 번째 비동기 작업 호출이 완료될 때까지 기다리지 않고 다음 비동기 작업 호출을 즉시 할당하여 조밀하게 프로세스를 수행합니다.  
 
 **이를 통해 다음과 같은 여러 가지를 달성할 수 있습니다:**
 
@@ -15,7 +16,7 @@
 
 ## 📚 Getting Started
 
-Arehs는 CommonJS와 ES Modules를 지원합니다.
+`arehs`는 CommonJS와 ES Modules를 지원합니다.
 
 ### CommonJS
 

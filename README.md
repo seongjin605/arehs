@@ -4,7 +4,9 @@
 
 # 🏛️ Arehs
 
-`Arehs` is ideal for promise-based massively parallel processing. Improve your application performance. 💪
+The `arehs` ensures the best possible large batch processing, which is oriented towards event-driven chunk processing.    
+It does this by immediately allocating the next asynchronous task call for dense packing, rather than waiting for the
+first asynchronous task call to complete.
 
 **In that way we can achieve multiple things:**
 
@@ -15,7 +17,7 @@
 
 ## 📚 Getting Started
 
-Arehs supports both CommonJS and ES Modules.
+`arehs` supports both CommonJS and ES Modules.
 
 ### CommonJS
 
