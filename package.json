@@ -1,6 +1,6 @@
 {
   "name": "arehs",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "The ares ensures the best possible large batch processing, which is oriented towards event-driven chunk processing.",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
@@ -28,11 +28,14 @@
   },
   "keywords": [
     "arehs",
-    "asyc",
+    "async",
     "promise",
     "promisepool",
     "promiseall",
-    "typescript"
+    "typescript",
+    "batch",
+    "large",
+    "chunk"
   ],
   "repository": {
     "type": "git",
