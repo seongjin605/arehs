@@ -144,6 +144,11 @@ export class Arehs<T, R> {
    * @private
    */
   private _executeProcess(): Promise<R[]> {
+    if(this.data.length === 0) {
+      this.eventEmitter.emit(ProcessStatus.TASK_COMPLETED);
+      this.eventEmitter.emit(ProcessStatus.FINISH);
+      return Promise.resolve([]);
+    }
     if (this.promiseExecution !== null) {
       return this.promiseExecution;
     }
