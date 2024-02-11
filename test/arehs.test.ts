@@ -60,7 +60,7 @@ async function getRuntimeWithException() {
       .withConcurrency(50)
       .stopOnFailure(true)
       .retryLimit(3)
-      .mapAsyncWithRetry(delayOrError);
+      .mapAsync(delayOrError);
     const endArehs = performance.now();
 
     console.log(`Arehs Exception: ${endArehs - startArehs}ms`);

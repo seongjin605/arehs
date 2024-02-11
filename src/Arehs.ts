@@ -95,26 +95,14 @@ export class Arehs<T, R> {
 
   /**
    * Calling the mapAsync function starts the process of asynchronously processing the input data and returning the results.
-   * At this time, each task can have multiple tasks running at the same time, but this is limited by the concurrency setting.
-   * This can be used as a useful tool for effectively managing and controlling large data processing jobs.
-   *
-   * @param processor
-   */
-  mapAsync(processor: (data: T) => Promise<R>): Promise<R[]> {
-    this.processor = processor;
-    return this._executeProcess();
-  }
-
-  /**
-   * Calling the mapAsyncWithRetry function initiates the process of asynchronously processing the input data with retry logic applied to the processing function.
-   * If an error occurs during processing, the function retries according to the specified retry limit.
-   * If the retry limit is reached and the stopOnFailure option is set to true, the function stops processing and emits appropriate events.
+   * If the stopOnFailure option is set to true, the function stops processing and emits appropriate events.
    * This can be useful for handling transient errors or ensuring data processing resilience.
+   * Also, if the retryLimit option is greater than 0, you can set a limit on the number of retries on failure.
    *
-   * @param processor The function responsible for processing each data item with retry logic applied.
+   * @param processor The function responsible for processing each data item. If allowStopOnFailure is true, retry logic is applied.
    * @returns A Promise that resolves to an array of results after processing all data items.
    */
-  mapAsyncWithRetry(processor: (data: T) => Promise<R>): Promise<R[]> {
+  mapAsync(processor: (data: T) => Promise<R>): Promise<R[]> {
     const retryableProcessor = async (data: T) => {
       let attempts = 0;
       while (true) {
@@ -138,7 +126,8 @@ export class Arehs<T, R> {
         }
       }
     };
-    return this.mapAsync(retryableProcessor);
+    this.processor = this.allowStopOnFailure ? retryableProcessor : processor;
+    return this._executeProcess();
   }
 
   /**
