@@ -12,6 +12,8 @@ export class Arehs<T, R> {
   private promiseExecution: Promise<R[]> | null;
   private timeout: number;
   private error: unknown;
+  private allowStopOnFailure: boolean;
+  private retryLimitCount: number;
 
   /**
    * Constructor that initializes an instance of the class.
@@ -34,6 +36,8 @@ export class Arehs<T, R> {
     this.promiseExecution = null;
     this.timeout = timeout;
     this.error = null;
+    this.allowStopOnFailure = false;
+    this.retryLimitCount = 0;
   }
 
   /**
@@ -70,6 +74,26 @@ export class Arehs<T, R> {
   }
 
   /**
+   * Set whether to stop on failure.
+   *
+   * @param stopOnFailure
+   */
+  stopOnFailure(stopOnFailure: boolean): this {
+    this.allowStopOnFailure = stopOnFailure;
+    return this;
+  }
+
+  /**
+   * Set a limit on the number of retries on failure.
+   *
+   * @param retryLimit
+   */
+  retryLimit(retryLimit: number): this {
+    this.retryLimitCount = retryLimit;
+    return this;
+  }
+
+  /**
    * Calling the mapAsync function starts the process of asynchronously processing the input data and returning the results.
    * At this time, each task can have multiple tasks running at the same time, but this is limited by the concurrency setting.
    * This can be used as a useful tool for effectively managing and controlling large data processing jobs.
@@ -79,6 +103,42 @@ export class Arehs<T, R> {
   mapAsync(processor: (data: T) => Promise<R>): Promise<R[]> {
     this.processor = processor;
     return this._executeProcess();
+  }
+
+  /**
+   * Calling the mapAsyncWithRetry function initiates the process of asynchronously processing the input data with retry logic applied to the processing function.
+   * If an error occurs during processing, the function retries according to the specified retry limit.
+   * If the retry limit is reached and the stopOnFailure option is set to true, the function stops processing and emits appropriate events.
+   * This can be useful for handling transient errors or ensuring data processing resilience.
+   *
+   * @param processor The function responsible for processing each data item with retry logic applied.
+   * @returns A Promise that resolves to an array of results after processing all data items.
+   */
+  mapAsyncWithRetry(processor: (data: T) => Promise<R>): Promise<R[]> {
+    const retryableProcessor = async (data: T) => {
+      let attempts = 0;
+      while (true) {
+        try {
+          return await processor(data);
+        } catch (error) {
+          if (this.retryLimitCount > 0 && attempts < this.retryLimitCount) {
+            attempts++;
+            console.error(`Error occurred (${attempts}/${this.retryLimitCount}):`, error);
+          } else {
+            if (this.allowStopOnFailure) {
+              this.inFlightTasks = 0;
+              this.processedEntries = 0;
+              while (this.data.length) this.data.pop();
+              this.eventEmitter.emit(ProcessStatus.ERROR, () => Promise.reject(error));
+              this.eventEmitter.emit(ProcessStatus.TASK_COMPLETED);
+              this.eventEmitter.emit(ProcessStatus.FINISH);
+            }
+            throw error;
+          }
+        }
+      }
+    };
+    return this.mapAsync(retryableProcessor);
   }
 
   /**
@@ -144,7 +204,7 @@ export class Arehs<T, R> {
    * @private
    */
   private _executeProcess(): Promise<R[]> {
-    if(this.data.length === 0) {
+    if (this.data.length === 0) {
       this.eventEmitter.emit(ProcessStatus.TASK_COMPLETED);
       this.eventEmitter.emit(ProcessStatus.FINISH);
       return Promise.resolve([]);

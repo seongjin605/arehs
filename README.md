@@ -4,7 +4,8 @@
 
 # 🏛️ Arehs
 
-The `arehs` ensures the best possible large batch processing, which is oriented towards event-driven chunk processing.    
+The `arehs` ensures the best possible large batch processing, which is oriented towards event-driven chunk
+processing.    
 It does this by immediately allocating the next asynchronous task call for dense packing, rather than waiting for the
 first asynchronous task call to complete.
 
@@ -37,11 +38,19 @@ import { Arehs } from "arehs";
 * `withConcurrency`: Methods that set the value for parallelism and return the current instance.(default: 10)
 * `timeoutLimit`: The default value is 0. If it's greater than 0, the option works, and an error is thrown if the
   operation takes longer than the timeout time(ms).
+* `stopOnFailure`: Set whether to stop on failure.
+* `retryLimit`: Set a limit on the number of retries on failure.
 * `mapAsync`: Calling the mapAsync function starts the process of asynchronously processing the input data and returning
   the results.
   At this time, each task can have multiple tasks running at the same time, but this is limited by the concurrency
   setting.
   This can be used as a useful tool for effectively managing and controlling large data processing jobs.
+* `mapAsyncWithRetry`: Calling the mapAsyncWithRetry function initiates the process of asynchronously processing the
+  input data with retry logic applied to the processing function.
+  If an error occurs during processing, the function retries according to the specified retry limit.
+  If the retry limit is reached and the stopOnFailure option is set to true, the function stops processing and
+  emits appropriate events.
+  This can be useful for handling transient errors or ensuring data processing resilience.
 
 ```typescript
 import { Arehs } from "arehs";
