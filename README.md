@@ -5,9 +5,11 @@
 # 🏛️ Arehs
 
 <p align="center">
-    <a href="https://img.shields.io/npm/v/arehs?logo=nodedotjs" target="_blank"><img src="https://img.shields.io/npm/v/arehs?logo=nodedotjs" alt="NPM Version" /></a>
+    <a href="https://img.shields.io/npm/v/arehs?logo=nodedotjs" target="_blank"><img src="https://img.shields.io/npm/v/arehs?logo=npm" alt="NPM Version" /></a>
     <a href="https://img.shields.io/npm/l/arehs" target="_blank"><img src="https://img.shields.io/npm/l/arehs" alt="Package License" /></a>
     <a href="https://img.shields.io/npm/dm/arehs" target="_blank"><img src="https://img.shields.io/npm/dm/arehs" alt="NPM Downloads" /></a>
+    <a href="https://shields.io/badge/JavaScript-F7DF1E?logo=JavaScript&logoColor=000&style=flat-square" target="_blank"><img src="https://shields.io/badge/JavaScript-F7DF1E?logo=JavaScript&logoColor=000&style=flat-square" alt="Javascript" /></a>
+    <a href="https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square" target="_blank"><img src="https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square" alt="Javascript" /></a>
     <!--<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/seongjin605/arehs/main" alt="CircleCI" /></a>-->
 </p>
 
