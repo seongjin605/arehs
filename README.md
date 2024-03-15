@@ -3,11 +3,12 @@
 <p>
 
 # 🏛️ Arehs
-    <p align="center">
-<a href="https://img.shields.io/npm/v/arehs?logo=nodedotjs" target="_blank"><img src="https://img.shields.io/npm/v/arehs?logo=nodedotjs" alt="NPM Version" /></a>
-<a href="https://img.shields.io/npm/l/arehs" target="_blank"><img src="https://img.shields.io/npm/l/arehs" alt="Package License" /></a>
-<a href="https://img.shields.io/npm/dm/arehs" target="_blank"><img src="https://img.shields.io/npm/dm/arehs" alt="NPM Downloads" /></a>
-<!--<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/seongjin605/arehs/main" alt="CircleCI" /></a>-->
+
+<p align="center">
+    <a href="https://img.shields.io/npm/v/arehs?logo=nodedotjs" target="_blank"><img src="https://img.shields.io/npm/v/arehs?logo=nodedotjs" alt="NPM Version" /></a>
+    <a href="https://img.shields.io/npm/l/arehs" target="_blank"><img src="https://img.shields.io/npm/l/arehs" alt="Package License" /></a>
+    <a href="https://img.shields.io/npm/dm/arehs" target="_blank"><img src="https://img.shields.io/npm/dm/arehs" alt="NPM Downloads" /></a>
+    <!--<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/seongjin605/arehs/main" alt="CircleCI" /></a>-->
 </p>
 
 The `arehs` ensures the best possible large batch processing, which is oriented towards event-driven chunk
