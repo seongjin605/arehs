@@ -3,10 +3,13 @@ import { Arehs } from '../src';
 jest.setTimeout(1000 * 60 * 3);
 
 const delay = (i: number) => {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      res(i);
-    }, 150 + Math.random() * 1000);
+  return new Promise(res => {
+    setTimeout(
+      () => {
+        res(i);
+      },
+      150 + Math.random() * 1000
+    );
   });
 };
 
@@ -15,9 +18,12 @@ const delayOrError = (i: number) => {
     if (i === 777) {
       return rej(runtimeException(i));
     }
-    setTimeout(() => {
-      res(i);
-    }, 150 + Math.random() * 1000);
+    setTimeout(
+      () => {
+        res(i);
+      },
+      150 + Math.random() * 1000
+    );
   });
 };
 
@@ -56,11 +62,7 @@ async function getRuntimeWithException() {
     const tasks = Array.from({ length: 1000 }).map((d, i) => i);
 
     const startArehs = performance.now();
-    await Arehs.create(tasks)
-      .withConcurrency(50)
-      .stopOnFailure(true)
-      .retryLimit(3)
-      .mapAsync(delayOrError);
+    await Arehs.create(tasks).withConcurrency(50).stopOnFailure(true).retryLimit(3).mapAsync(delayOrError);
     const endArehs = performance.now();
 
     console.log(`Arehs Exception: ${endArehs - startArehs}ms`);
@@ -80,8 +82,9 @@ async function getRuntimeWithException() {
       startPromiseAll,
       endPromiseAll
     };
-  } catch (error: any) {
-    throw new Error(error);
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    throw new Error(errorMessage);
   }
 }
 
@@ -90,8 +93,8 @@ test('Performance Test', async () => {
   expect(endArehs - startArehs).toBeLessThanOrEqual(endPromiseAll - startPromiseAll);
 });
 
-test('Test Exception', async () => {
+test('Exception', async () => {
   await expect(async () => {
     await getRuntimeWithException();
-  }).rejects.toThrowError('This is runtimeException: 777');
+  }).rejects.toThrow('This is runtimeException: 777');
 });
